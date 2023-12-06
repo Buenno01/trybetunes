@@ -2,7 +2,7 @@ import React from 'react';
 
 function Loading() {
   return (
-    <div>Carregando...</div>
+    <div className="self-center text-sky-400 font-bold">Carregando...</div>
   );
 }
 

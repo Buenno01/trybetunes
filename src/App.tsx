@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Login from './pages/Login';
 import Search from './pages/Search';
 import Album from './pages/Album';
@@ -9,8 +9,13 @@ import NotFound from './pages/NotFound';
 import Layout from './components/Layout';
 
 function App() {
+  const location = useLocation();
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex flex-col">
+    <div
+      className={ `min-h-screen 
+      ${location.pathname === '/' ? 'bg-gray-950' : 'bg-gray-700'}
+     text-white flex flex-col` }
+    >
       <Routes>
         <Route path="/" element={ <Layout /> }>
           <Route index element={ <Login /> } />

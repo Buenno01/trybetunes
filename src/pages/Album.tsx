@@ -31,19 +31,23 @@ function Album() {
   return (
     <div>
       {
-        isLoading
+        isLoading || !album
           ? <Loading />
           : (
             <>
-              <h2 data-testid="artist-name">{album?.artistName}</h2>
-              <h2 data-testid="album-name">{album?.collectionName}</h2>
+              <h2 data-testid="artist-name">{album.artistName}</h2>
+              <h2 data-testid="album-name">{album.collectionName}</h2>
               <div>
                 {
                   musics.length === 0
                     ? 'Suas músicas não foram encontradas.'
                     : (
                       musics.map((song) => (
-                        <MusicCard key={ song.trackId } { ...song } />
+                        <MusicCard
+                          key={ song.trackId }
+                          songInfo={ song }
+                          collectionImg={ album.artworkUrl100 }
+                        />
                       ))
                     )
                 }

@@ -71,7 +71,15 @@ function Login() {
               <p className="text-center text-sm text-gray-500">
                 Desenvolvido por
                 {' '}
-                <a>Vinícius Bueno</a>
+                <a
+                  className="font-semibold"
+                  target="_blank"
+                  href="https://github.com/Buenno01"
+                  rel="noreferrer"
+                >
+                  Vinícius Bueno
+
+                </a>
               </p>
             </>
           )

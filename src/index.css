@@ -5,3 +5,11 @@
 :root {
   --sky-opacity-2: rgba(14, 165, 233, 0.2)
 }
+
+.active {
+  color: rgba(14, 165, 233);
+  background-image: radial-gradient(circle at 50%, #1f2937, #111827);
+  background-color: #1f2937;
+  border-color: rgba(14, 165, 233);
+  font-weight: 500;
+}

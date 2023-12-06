@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
-import Loading from './Loading';
 
 function Header() {
   const [user, setUser] = useState('');
@@ -15,21 +14,58 @@ function Header() {
     };
     fetchUser();
   }, []);
+  const linkClasses = `w-full flex justify-center
+  border-b border-gray-600 py-3`;
   return (
-    <header data-testid="header-component min-w-full flex flex-col items-center">
+    <header
+      className="min-w-full h-28 justify-between flex flex-col bg-gray-950 mb-5 shadow-lg"
+      data-testid="header-component"
+    >
       {
         isLoading
-          ? <p>Carregando...</p>
-          : (
+          ? (
+            <p className="self-center my-auto text-sky-400 font-semibold">
+              Carregando...
+            </p>
+          ) : (
             <>
-              <nav>
-                <NavLink data-testid="link-to-search" to="/search">Search</NavLink>
-                <NavLink data-testid="link-to-favorites" to="/favorites">
-                  Favorites
-                </NavLink>
-                <NavLink data-testid="link-to-profile" to="/profile">Profile</NavLink>
-              </nav>
-              <p data-testid="header-user-name">{user}</p>
+              <div className="flex justify-between items-center px-2 py-3">
+                <h1 className="text-sky-400 text-2xl font-medium">TrybeTunes</h1>
+                <p
+                  className="text-gray-400"
+                  data-testid="header-user-name"
+                >
+                  {user}
+                </p>
+              </div>
+              <div>
+                <hr className="border-gray-700" />
+                <nav className="flex justify-between">
+                  <NavLink
+                    className={ linkClasses }
+                    data-testid="link-to-search"
+                    to="/search"
+                  >
+                    Pesquisar
+
+                  </NavLink>
+                  <NavLink
+                    className={ linkClasses }
+                    data-testid="link-to-favorites"
+                    to="/favorites"
+                  >
+                    Favoritos
+                  </NavLink>
+                  <NavLink
+                    className={ linkClasses }
+                    data-testid="link-to-profile"
+                    to="/profile"
+                  >
+                    Perfil
+
+                  </NavLink>
+                </nav>
+              </div>
             </>
           )
       }
