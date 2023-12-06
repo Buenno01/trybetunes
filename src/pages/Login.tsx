@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+import { createUser } from '../services/userAPI';
+import Loading from '../components/Loading';
 
 function Login() {
   const [login, setLogin] = useState('');
-  function handleSubmit() {
-
+  const [isLoading, setIsLoading] = useState(false);
+  async function handleSubmit() {
+    setIsLoading(true);
+    await createUser({ name: login });
+    setIsLoading(false);
   }
 
   function handleChange({ target }: React.ChangeEvent<HTMLInputElement>) {
@@ -13,15 +18,28 @@ function Login() {
   const validation = login.length > 2;
 
   return (
-    <form onSubmit={ handleSubmit }>
-      <input
-        onChange={ (e) => { handleChange(e); } }
-        type="text"
-        data-testid="login-name-input"
-        value={ login }
-      />
-      <button data-testid="login-submit-button" disabled={ !validation }>Entrar</button>
-    </form>
+    <div>
+      {
+    isLoading
+      ? <Loading />
+      : (
+        <form onSubmit={ handleSubmit }>
+          <input
+            onChange={ (e) => { handleChange(e); } }
+            type="text"
+            data-testid="login-name-input"
+            value={ login }
+          />
+          <button
+            data-testid="login-submit-button"
+            disabled={ !validation }
+          >
+            Entrar
+          </button>
+        </form>
+      )
+    }
+    </div>
   );
 }
 
