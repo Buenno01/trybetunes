@@ -10,9 +10,7 @@ function Layout() {
         location.pathname !== '/'
           && <Header />
       }
-      <div>
-        <Outlet />
-      </div>
+      <Outlet />
     </>
   );
 }

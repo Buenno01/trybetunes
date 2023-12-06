@@ -10,17 +10,19 @@ import Layout from './components/Layout';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={ <Layout /> }>
-        <Route index element={ <Login /> } />
-        <Route path="/search" element={ <Search /> } />
-        <Route path="/album/:id" element={ <Album /> } />
-        <Route path="/favorites" element={ <Favorites /> } />
-        <Route path="/profile" element={ <Profile /> } />
-        <Route path="/profile/edit" element={ <ProfileEdit /> } />
-        <Route path="*" element={ <NotFound /> } />
-      </Route>
-    </Routes>
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col">
+      <Routes>
+        <Route path="/" element={ <Layout /> }>
+          <Route index element={ <Login /> } />
+          <Route path="/search" element={ <Search /> } />
+          <Route path="/album/:id" element={ <Album /> } />
+          <Route path="/favorites" element={ <Favorites /> } />
+          <Route path="/profile" element={ <Profile /> } />
+          <Route path="/profile/edit" element={ <ProfileEdit /> } />
+          <Route path="*" element={ <NotFound /> } />
+        </Route>
+      </Routes>
+    </div>
   );
 }
 

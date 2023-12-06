@@ -16,10 +16,10 @@ function Header() {
     fetchUser();
   }, []);
   return (
-    <header data-testid="header-component">
+    <header data-testid="header-component min-w-full flex flex-col items-center">
       {
         isLoading
-          ? <Loading />
+          ? <p>Carregando...</p>
           : (
             <>
               <nav>
