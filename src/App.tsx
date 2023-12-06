@@ -1,6 +1,14 @@
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
+
 function App() {
+  const [loading, setLoading] = useState(false);
+
   return (
-    <p>Trybetunes</p>
+    <Routes>
+      <Route path="/" element={ <Login /> } />
+    </Routes>
   );
 }
 
