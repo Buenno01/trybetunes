@@ -7,8 +7,7 @@ type AlbumCardProps = {
 };
 
 function AlbumCard({ infos }:AlbumCardProps) {
-  const { artistId, artistName, artworkUrl100, collectionId,
-    collectionName, collectionPrice, releaseDate, trackCount } = infos;
+  const { collectionId, collectionName } = infos;
   return (
     <Link to={ `/album/${collectionId}` } data-testid={ `link-to-album-${collectionId}` }>
       <h3>{collectionName}</h3>
