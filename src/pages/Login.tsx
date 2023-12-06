@@ -20,7 +20,7 @@ function Login() {
     setLogin(target.value);
   }
 
-  const validation = login.length < 2;
+  const validation = login.length < 3;
 
   return (
     <div>
