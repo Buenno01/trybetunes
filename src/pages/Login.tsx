@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
 import Loading from '../components/Loading';
 
 function Login() {
   const [login, setLogin] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  async function handleSubmit() {
+  const navigate = useNavigate();
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     setIsLoading(true);
     await createUser({ name: login });
     setIsLoading(false);
+    navigate('/search');
   }
 
   function handleChange({ target }: React.ChangeEvent<HTMLInputElement>) {
     setLogin(target.value);
   }
 
-  const validation = login.length > 2;
+  const validation = login.length < 2;
 
   return (
     <div>
@@ -23,7 +28,7 @@ function Login() {
     isLoading
       ? <Loading />
       : (
-        <form onSubmit={ handleSubmit }>
+        <form onSubmit={ (e) => { handleSubmit(e); } }>
           <input
             onChange={ (e) => { handleChange(e); } }
             type="text"
@@ -32,7 +37,7 @@ function Login() {
           />
           <button
             data-testid="login-submit-button"
-            disabled={ !validation }
+            disabled={ validation }
           >
             Entrar
           </button>
