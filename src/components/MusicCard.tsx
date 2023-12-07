@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SongType } from '../types';
-import checkedHeart from '../images/checked_heart.png';
-import emptyHeart from '../images/empty_heart.png';
+import SoundBar from './MusicCard/SoundBar';
+import FavoriteBtn from './MusicCard/FavoriteBtn';
 
 type MusicCardProps = {
   songInfo: SongType,
@@ -18,26 +18,26 @@ function MusicCard({ collectionImg, songInfo }: MusicCardProps) {
 
   return (
     <div
-      className="w-11/12 h-60 flex flex-col justify-center
+      className="w-60 h-60 flex flex-col justify-center
     items-center bg-gray-100 rounded-xl p-3 text-gray-950"
     >
-      <h3>{trackName}</h3>
-      <label data-testid={ `checkbox-music-${trackId}` }>
-        <img src={ isFavorite ? checkedHeart : emptyHeart } alt="favorite" />
-
-        <input
-          onChange={ handleFavorite }
-          className="hidden"
-          checked={ isFavorite }
-          type="checkbox"
+      <div className="relative w-52 h-52 overflow-hidden">
+        <img
+          className="w-52"
+          src={ collectionImg }
+          alt={ `artwork from the collection of ${trackName}` }
         />
-      </label>
-      <audio className="w-full" data-testid="audio-component" src={ previewUrl } controls>
-        <track kind="captions" />
-        O seu navegador não suporta o elemento
-        <code>audio</code>
-        .
-      </audio>
+        <FavoriteBtn
+          isFavorite={ isFavorite }
+          trackId={ trackId }
+          handleFavorite={ () => { handleFavorite(); } }
+        />
+
+        <SoundBar previewUrl={ previewUrl } />
+      </div>
+      <h3 className="text-lg whitespace-nowrap overflow-hidden">
+        {trackName}
+      </h3>
     </div>
   );
 }

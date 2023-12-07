@@ -35,9 +35,23 @@ function Album() {
           ? <Loading />
           : (
             <>
-              <h2 data-testid="artist-name">{album.artistName}</h2>
-              <h2 data-testid="album-name">{album.collectionName}</h2>
-              <div>
+              <div className="text-center pb-4">
+                <h2
+                  className="text-2xl font-bold"
+                  data-testid="album-name"
+                >
+                  {album.collectionName}
+
+                </h2>
+                <p
+                  className="text-gray-400"
+                  data-testid="artist-name"
+                >
+                  {album.artistName}
+
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-4">
                 {
                   musics.length === 0
                     ? 'Suas músicas não foram encontradas.'
