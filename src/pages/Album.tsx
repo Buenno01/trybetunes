@@ -4,6 +4,8 @@ import { AlbumType, SongType } from '../types';
 import getMusics from '../services/musicsAPI';
 import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
+import Wrapper from '../components/Wrapper';
+import Headline from '../components/Headline';
 
 function Album() {
   const [musics, setMusics] = useState<SongType[]>([]);
@@ -35,23 +37,12 @@ function Album() {
           ? <Loading />
           : (
             <>
-              <div className="text-center pb-4">
-                <h2
-                  className="text-2xl font-bold"
-                  data-testid="album-name"
-                >
-                  {album.collectionName}
-
-                </h2>
-                <p
-                  className="text-gray-400"
-                  data-testid="artist-name"
-                >
+              <Headline headline={ album.collectionName }>
+                <p className="text-gray-400" data-testid="artist-name">
                   {album.artistName}
-
                 </p>
-              </div>
-              <div className="flex flex-col items-center gap-4">
+              </Headline>
+              <Wrapper>
                 {
                   musics.length === 0
                     ? 'Suas músicas não foram encontradas.'
@@ -65,9 +56,8 @@ function Album() {
                       ))
                     )
                 }
-              </div>
+              </Wrapper>
             </>
-
           )
       }
     </div>

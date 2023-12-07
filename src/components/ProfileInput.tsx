@@ -8,7 +8,12 @@ type ProfileInputProps = {
 function ProfileInput({ headline = 'Nome', value, handleChange, id }: ProfileInputProps) {
   return (
     <label>
-      <h3 className="text-xl font-medium">{headline}</h3>
+      <h3 className="text-xl font-medium">
+        {headline}
+        <span className="text-red-500">
+          *
+        </span>
+      </h3>
       <input
         id={ id }
         type="text"

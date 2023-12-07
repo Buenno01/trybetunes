@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { GoPencil } from 'react-icons/go';
 import { Link } from 'react-router-dom';
-import MusicalNote from '../images/musical_note.svg';
 import { UserType } from '../types';
 import { getUser } from '../services/userAPI';
 import Loading from '../components/Loading';
-import ProfileItems from '../components/ProfileItems';
+import ProfileItems from '../components/Profile/ProfileItems';
+import ProfileImg from '../components/Profile/ProfileImg';
 
 function Profile() {
   const [user, setUser] = useState<UserType>();
@@ -40,20 +40,13 @@ function Profile() {
   ];
   if (isLoading || !user) return <Loading />;
   return (
-    <div className="w-10/12 self-center">
-      <span className="flex justify-between text-white items-center">
-        <span className="w-28 h-28 p-5 rounded-full overflow-hidden bg-white">
-          <img
-            data-testid="profile-image"
-            className="w-full"
-            src={ user?.image ? user?.image : MusicalNote }
-            alt="Profile avatar"
-          />
-        </span>
+    <div className="w-10/12 md:w-6/12 lg:w-4/12 self-center">
+      <span className="flex justify-between items-center">
+        <ProfileImg size="28" imageUrl={ user.image } />
         <Link
           to="/profile/edit"
-          className="text-md p-2 border h-fit w-fit
-        rounded-lg flex items-center gap-2"
+          className="text-md p-2 border border-sky-500 h-fit w-fit
+        rounded-lg flex items-center gap-2 text-sky-500"
           aria-label="Editar perfil"
         >
           Editar perfil

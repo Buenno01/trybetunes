@@ -13,8 +13,8 @@ function App() {
   return (
     <div
       className={ `min-h-screen 
-      ${location.pathname === '/' ? 'bg-gray-950' : 'bg-gray-700'}
-     text-white flex flex-col` }
+      ${location.pathname === '/' ? 'bg-gray-950' : 'bg-gray-100'}
+     text-gray-950 flex flex-col` }
     >
       <Routes>
         <Route path="/" element={ <Layout /> }>

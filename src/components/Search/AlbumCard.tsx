@@ -1,6 +1,5 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { AlbumType } from '../types';
+import { AlbumType } from '../../types';
 
 type AlbumCardProps = {
   infos: AlbumType,
@@ -11,7 +10,7 @@ function AlbumCard({ infos }:AlbumCardProps) {
   return (
     <Link
       className="w-48 h-60 flex flex-col justify-center
-      items-center bg-gray-100 rounded-xl p-3"
+      items-center bg-white shadow-xl rounded-xl p-3"
       to={ `/album/${collectionId}` }
       data-testid={ `link-to-album-${collectionId}` }
     >

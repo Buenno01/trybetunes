@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoPencil } from 'react-icons/go';
-import MusicalNote from '../images/musical_note.svg';
 import { getUser, updateUser } from '../services/userAPI';
 import { UserType } from '../types';
-import ProfileItems from '../components/ProfileItems';
 import ProfileInput from '../components/ProfileInput';
 import Loading from '../components/Loading';
 
@@ -64,11 +62,12 @@ function ProfileEdit() {
   if (isLoading) return <Loading />;
   return (
     <form
-      className="w-10/12 self-center flex flex-col"
+      className="w-10/12 self-center flex flex-col items-center"
       onSubmit={ (e) => { handleSubmit(e); } }
     >
       <button
-        className="text-md p-2 border h-fit w-fit
+        className="text-md p-2 border border-sky-500 h-fit w-fit text-sky-500
+        disabled:border-gray-300 disabled:text-gray-300
       rounded-lg flex items-center gap-2 self-center"
         type="submit"
         aria-label="Editar perfil"
@@ -85,7 +84,12 @@ function ProfileEdit() {
         items.map((item) => <ProfileInput key={ item.headline } { ...item } />)
         }
         <label>
-          <h3 className="text-xl font-medium">Descrição</h3>
+          <h3 className="text-xl font-medium">
+            Descrição
+            <span className="text-red-500">
+              *
+            </span>
+          </h3>
           <textarea
             data-testid="edit-input-description"
             id="description"
@@ -93,7 +97,7 @@ function ProfileEdit() {
             value={ user?.description }
             onChange={ (e) => handleChange(e) }
           />
-          <hr className="border-gray-600 my-1" />
+          <hr className="border-gray-400 my-1" />
         </label>
       </div>
     </form>

@@ -42,7 +42,7 @@ function MusicCard({ collectionImg = MusicalNote, songInfo }: MusicCardProps) {
   return (
     <div
       className="w-60 h-60 flex flex-col justify-center
-    items-center bg-gray-100 rounded-xl p-3 text-gray-950"
+    items-center bg-white shadow-xl rounded-xl p-3 text-gray-950"
     >
       <div className="relative w-52 h-52 overflow-hidden">
         {
