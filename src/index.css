@@ -13,3 +13,19 @@
   border-color: rgba(14, 165, 233);
   font-weight: 500;
 }
+
+.starts-hidden {
+  display: none;
+}
+
+.active .starts-hidden {
+  display: inline;
+}
+
+.starts-visible {
+  display: inline;
+}
+
+.active .starts-visible {
+  display: none;
+}
