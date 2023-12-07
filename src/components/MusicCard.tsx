@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SongType } from '../types';
 import SoundBar from './MusicCard/SoundBar';
 import FavoriteBtn from './MusicCard/FavoriteBtn';
+import { addSong, removeSong } from '../services/favoriteSongsAPI';
 
 type MusicCardProps = {
   songInfo: SongType,
@@ -11,6 +12,14 @@ type MusicCardProps = {
 function MusicCard({ collectionImg, songInfo }: MusicCardProps) {
   const { previewUrl, trackName, trackId } = songInfo;
   const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    if (isFavorite) {
+      addSong(songInfo);
+    } else {
+      removeSong(songInfo);
+    }
+  }, [isFavorite]);
 
   function handleFavorite() {
     setIsFavorite(!isFavorite);
@@ -35,7 +44,7 @@ function MusicCard({ collectionImg, songInfo }: MusicCardProps) {
 
         <SoundBar previewUrl={ previewUrl } />
       </div>
-      <h3 className="text-lg whitespace-nowrap overflow-hidden">
+      <h3 className="text-lg w-full whitespace-nowrap overflow-hidden">
         {trackName}
       </h3>
     </div>
