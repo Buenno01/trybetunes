@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { SongType } from '../types';
 import SoundBar from './MusicCard/SoundBar';
 import FavoriteBtn from './MusicCard/FavoriteBtn';
-import { addSong, removeSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 
 type MusicCardProps = {
   songInfo: SongType,
@@ -13,16 +13,26 @@ function MusicCard({ collectionImg, songInfo }: MusicCardProps) {
   const { previewUrl, trackName, trackId } = songInfo;
   const [isFavorite, setIsFavorite] = useState(false);
 
+  function checkIfIsFavorite(favSongs: SongType[], song: SongType): boolean {
+    const result = favSongs.find(({ trackId: id }) => id === song.trackId);
+    return !!result;
+  }
+
   useEffect(() => {
-    if (isFavorite) {
+    async function fetchFavoriteSongs() {
+      const favoriteSongs = await getFavoriteSongs();
+      setIsFavorite(checkIfIsFavorite(favoriteSongs, songInfo));
+    }
+    fetchFavoriteSongs();
+  }, []);
+
+  function handleFavorite() {
+    setIsFavorite(!isFavorite);
+    if (!isFavorite) {
       addSong(songInfo);
     } else {
       removeSong(songInfo);
     }
-  }, [isFavorite]);
-
-  function handleFavorite() {
-    setIsFavorite(!isFavorite);
   }
 
   return (
