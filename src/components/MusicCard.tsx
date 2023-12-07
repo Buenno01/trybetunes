@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { SongType } from '../types';
 import SoundBar from './MusicCard/SoundBar';
 import FavoriteBtn from './MusicCard/FavoriteBtn';
 import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
+import MusicalNote from '../images/musical_note.svg';
 
 type MusicCardProps = {
   songInfo: SongType,
-  collectionImg: string,
+  collectionImg?: string,
 };
 
-function MusicCard({ collectionImg, songInfo }: MusicCardProps) {
+function MusicCard({ collectionImg = MusicalNote, songInfo }: MusicCardProps) {
   const { previewUrl, trackName, trackId } = songInfo;
   const [isFavorite, setIsFavorite] = useState(false);
+  const location = useLocation();
 
   function checkIfIsFavorite(favSongs: SongType[], song: SongType): boolean {
-    const result = favSongs.find(({ trackId: id }) => id === song.trackId);
-    return !!result;
+    return !!favSongs.find(({ trackId: id }) => id === song.trackId);
   }
 
   useEffect(() => {
@@ -35,17 +37,36 @@ function MusicCard({ collectionImg, songInfo }: MusicCardProps) {
     }
   }
 
+  if (location.pathname === '/favorites' && !isFavorite) return;
+
   return (
     <div
       className="w-60 h-60 flex flex-col justify-center
     items-center bg-gray-100 rounded-xl p-3 text-gray-950"
     >
       <div className="relative w-52 h-52 overflow-hidden">
-        <img
-          className="w-52"
-          src={ collectionImg }
-          alt={ `artwork from the collection of ${trackName}` }
-        />
+        {
+          collectionImg === MusicalNote
+            ? (
+              <span
+                className="w-52 flex justify-center h-full
+              bg-gradient-to-tr from-gray-950 to-gray-400"
+              >
+                <img
+                  className="w-32"
+                  src={ collectionImg }
+                  alt={ `artwork from the collection of ${trackName}` }
+                />
+              </span>
+            )
+            : (
+              <img
+                className="w-52"
+                src={ collectionImg }
+                alt={ `artwork from the collection of ${trackName}` }
+              />
+            )
+        }
         <FavoriteBtn
           isFavorite={ isFavorite }
           trackId={ trackId }
