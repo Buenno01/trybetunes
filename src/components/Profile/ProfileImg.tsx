@@ -1,4 +1,4 @@
-import MusicalNote from '../../images/musical_note.svg';
+import GuestImg from '../../images/guest.svg';
 
 type ProfileImgProps = {
   size: '28' | '12' | '8' | '4' | '6' | '1' | '2' | '3',
@@ -7,7 +7,7 @@ type ProfileImgProps = {
 
 function ProfileImg({ imageUrl = undefined, size }:ProfileImgProps) {
   if (!imageUrl) {
-    imageUrl = MusicalNote;
+    imageUrl = GuestImg;
   }
   const loadOnTailwind = 'w-6 w-1 w-2 w-3 h-6 h-1 h-2 h-3';
   return (

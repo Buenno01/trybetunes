@@ -4,7 +4,11 @@ import NavBar from './Header/NavBar';
 import UserInfo from './Header/UserInfo';
 import { UserType } from '../types';
 
-function Header() {
+type HeaderProps = {
+  changedUser: boolean,
+};
+
+function Header({ changedUser }: HeaderProps) {
   const [user, setUser] = useState<UserType>();
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -15,7 +19,7 @@ function Header() {
       setIsLoading(false);
     };
     fetchUser();
-  }, []);
+  }, [changedUser]);
 
   return (
     <header

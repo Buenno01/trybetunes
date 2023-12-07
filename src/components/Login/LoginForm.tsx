@@ -26,7 +26,7 @@ function LoginForm({ setIsLoading }: LoginFormProps) {
   return (
     <form
       className="flex flex-col gap-4 bg-gray-700 shadow-xl w-11/12
-      self-center p-8 rounded-xl mt-5 mb-auto"
+      self-center p-8 rounded-xl mt-5 mb-auto max-w-md"
       onSubmit={ (e) => { handleSubmit(e); } }
     >
       <input
@@ -38,8 +38,8 @@ function LoginForm({ setIsLoading }: LoginFormProps) {
         value={ login }
       />
       <button
-        className="w-1/2 self-center bg-sky-500 font-bold py-2
-                    rounded-lg text-white"
+        className="w-36 self-center bg-sky-500 font-bold py-2
+        rounded-lg text-white"
         data-testid="login-submit-button"
         disabled={ validation }
       >

@@ -1,4 +1,4 @@
-import MusicalNote from '../../images/musical_note.svg';
+import GuestImg from '../../images/guest.svg';
 import ProfileImg from '../Profile/ProfileImg';
 
 type UserInfoProps = {
@@ -8,7 +8,7 @@ type UserInfoProps = {
 
 function UserInfo({ userImage, userName }:UserInfoProps) {
   userName = userName || 'Guest';
-  userImage = userImage || MusicalNote;
+  userImage = userImage || GuestImg;
   return (
     <div
       className="flex items-center gap-2

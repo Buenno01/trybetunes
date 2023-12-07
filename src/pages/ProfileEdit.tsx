@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoPencil } from 'react-icons/go';
 import { getUser, updateUser } from '../services/userAPI';
@@ -6,7 +6,12 @@ import { UserType } from '../types';
 import ProfileInput from '../components/ProfileInput';
 import Loading from '../components/Loading';
 
-function ProfileEdit() {
+type ProfileEditProps = {
+  setChangedUser: Dispatch<SetStateAction<boolean>>,
+  changedUser: boolean,
+};
+
+function ProfileEdit({ setChangedUser, changedUser }:ProfileEditProps) {
   const [user, setUser] = useState<UserType>();
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
@@ -22,11 +27,12 @@ function ProfileEdit() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
-    navigate('/profile');
     if (user) {
       await updateUser(user);
     }
+    navigate('/profile');
     setIsLoading(false);
+    setChangedUser(!changedUser);
   }
 
   function handleChange({ target }

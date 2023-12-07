@@ -3,13 +3,17 @@ import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 
-function Layout() {
+type LayoutProps = {
+  changedUser: boolean,
+};
+
+function Layout({ changedUser }:LayoutProps) {
   const location = useLocation();
   return (
     <>
       {
         location.pathname !== '/'
-          && <Header />
+          && <Header changedUser={ changedUser } />
       }
       <Outlet />
       <Footer />

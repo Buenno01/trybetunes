@@ -4,7 +4,7 @@ import { SongType } from '../types';
 import SoundBar from './MusicCard/SoundBar';
 import FavoriteBtn from './MusicCard/FavoriteBtn';
 import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
-import MusicalNote from '../images/musical_note.svg';
+import MusicalNote from '../images/note.svg';
 
 type MusicCardProps = {
   songInfo: SongType,
