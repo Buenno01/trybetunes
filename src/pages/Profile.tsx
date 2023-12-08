@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import { GoPencil } from 'react-icons/go';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserType } from '../types';
 import { getUser } from '../services/userAPI';
 import Loading from '../components/Loading';
 import ProfileItems from '../components/Profile/ProfileItems';
 import ProfileImg from '../components/Profile/ProfileImg';
+import OutlinedBtn from '../components/OutlinedBtn';
 
 function Profile() {
   const [user, setUser] = useState<UserType>();
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -43,17 +45,11 @@ function Profile() {
     <div className="w-10/12 md:w-6/12 lg:w-4/12 self-center">
       <span className="flex justify-between items-center">
         <ProfileImg size="28" imageUrl={ user.image } />
-        <Link
-          to="/profile/edit"
-          className="text-md p-2 border border-sky-500 h-fit w-fit
-        rounded-lg flex items-center gap-2 text-sky-500"
-          aria-label="Editar perfil"
-        >
-          Editar perfil
-          <span className="text-xl">
-            <GoPencil />
-          </span>
-        </Link>
+        <OutlinedBtn
+          Icon={ <GoPencil /> }
+          text="Editar perfil"
+          onClick={ () => navigate('/profile/edit') }
+        />
       </span>
       <div className="flex flex-col gap-2 mt-4">
         {

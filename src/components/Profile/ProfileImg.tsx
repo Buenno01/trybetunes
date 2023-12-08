@@ -9,7 +9,7 @@ function ProfileImg({ imageUrl = undefined, size }:ProfileImgProps) {
   if (!imageUrl) {
     imageUrl = GuestImg;
   }
-  const loadOnTailwind = 'w-6 w-1 w-2 w-3 h-6 h-1 h-2 h-3';
+  const loadOnTailwind = 'w-6 w-1 w-2 w-3 h-6 h-1 h-2 h-3 h-28 w-28';
   return (
     <span
       className={ `w-${size} h-${size}

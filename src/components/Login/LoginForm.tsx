@@ -1,25 +1,23 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createUser } from '../../services/userAPI';
+import useForm from '../../utils/useForm';
 
 type LoginFormProps = {
   setIsLoading: Dispatch<SetStateAction<boolean>>
 };
 
 function LoginForm({ setIsLoading }: LoginFormProps) {
-  const [login, setLogin] = useState('');
   const navigate = useNavigate();
+  const [login, handleChange, resetForm] = useForm({ name: '' });
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
-    await createUser({ name: login });
+    await createUser(login);
+    resetForm();
     setIsLoading(false);
     navigate('/search');
-  }
-
-  function handleChange({ target }: React.ChangeEvent<HTMLInputElement>) {
-    setLogin(target.value);
   }
 
   const validation = login.length < 3;
@@ -34,8 +32,10 @@ function LoginForm({ setIsLoading }: LoginFormProps) {
         placeholder="Nome de Usuário"
         onChange={ (e) => { handleChange(e); } }
         type="text"
+        name="name"
+        id="name"
         data-testid="login-name-input"
-        value={ login }
+        value={ login.name }
       />
       <button
         className="w-36 self-center bg-sky-500 font-bold py-2

@@ -16,6 +16,7 @@ function ProfileInput({ headline = 'Nome', value, handleChange, id }: ProfileInp
       </h3>
       <input
         id={ id }
+        name={ id }
         type="text"
         className="font-light text-gray-950 px-3 py-1 rounded-lg"
         value={ value }
